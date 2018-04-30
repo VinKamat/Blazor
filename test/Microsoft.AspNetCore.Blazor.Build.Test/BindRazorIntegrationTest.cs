@@ -18,14 +18,17 @@ namespace Microsoft.AspNetCore.Blazor.Build.Test
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
 using System;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public int Value { get; set; }
 
+        [Parameter]
         public Action<int> ValueChanged { get; set; }
     }
 }"));
@@ -90,14 +93,17 @@ namespace Test
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
 using System;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public int Value { get; set; }
 
+        [Parameter]
         public Action<int> OnChanged { get; set; }
     }
 }"));

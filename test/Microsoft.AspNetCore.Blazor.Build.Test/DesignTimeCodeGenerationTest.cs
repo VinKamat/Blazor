@@ -1,7 +1,6 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using Microsoft.CodeAnalysis.CSharp;
 using Xunit;
 
 namespace Microsoft.AspNetCore.Blazor.Build.Test
@@ -17,6 +16,7 @@ namespace Microsoft.AspNetCore.Blazor.Build.Test
         {
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
@@ -27,10 +27,10 @@ namespace Test
 
     public class MyComponent : BlazorComponent
     {
-        public int IntProperty { get; set; }
-        public bool BoolProperty { get; set; }
-        public string StringProperty { get; set; }
-        public SomeType ObjectProperty { get; set; }
+        [Parameter] public int IntProperty { get; set; }
+        [Parameter] public bool BoolProperty { get; set; }
+        [Parameter] public string StringProperty { get; set; }
+        [Parameter] public SomeType ObjectProperty { get; set; }
     }
 }
 "));
@@ -55,12 +55,14 @@ namespace Test
         {
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public string StringProperty { get; set; }
     }
 }
@@ -116,6 +118,7 @@ namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public Action<UIEventArgs> OnClick { get; set; }
     }
 }
@@ -152,6 +155,7 @@ namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public Action<UIEventArgs> OnClick { get; set; }
     }
 }
@@ -188,8 +192,10 @@ namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public string MyAttr { get; set; }
 
+        [Parameter]
         public RenderFragment ChildContent { get; set; }
     }
 }
@@ -376,14 +382,17 @@ namespace Test
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
 using System;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public int Value { get; set; }
 
+        [Parameter]
         public Action<int> ValueChanged { get; set; }
     }
 }"));
@@ -440,14 +449,17 @@ namespace Test
             // Arrange
             AdditionalSyntaxTrees.Add(Parse(@"
 using System;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
 {
     public class MyComponent : BlazorComponent
     {
+        [Parameter]
         public int Value { get; set; }
 
+        [Parameter]
         public Action<int> OnChanged { get; set; }
     }
 }"));

@@ -219,6 +219,7 @@ namespace Microsoft.AspNetCore.Blazor.Test
 
         private class RootLayout : AutoRenderComponent, ILayoutComponent
         {
+            [Parameter]
             public RenderFragment Body { get; set; }
 
             protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -232,6 +233,7 @@ namespace Microsoft.AspNetCore.Blazor.Test
         [Layout(typeof(RootLayout))]
         private class NestedLayout : AutoRenderComponent, ILayoutComponent
         {
+            [Parameter]
             public RenderFragment Body { get; set; }
 
             protected override void BuildRenderTree(RenderTreeBuilder builder)

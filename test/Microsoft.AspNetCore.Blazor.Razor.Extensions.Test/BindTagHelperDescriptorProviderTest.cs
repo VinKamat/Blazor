@@ -17,6 +17,7 @@ namespace Microsoft.AspNetCore.Blazor.Razor.Extensions
             // Arrange
             var compilation = BaseCompilation.AddSyntaxTrees(Parse(@"
 using System;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Test
@@ -27,8 +28,10 @@ namespace Test
 
         public void SetParameters(ParameterCollection parameters) { }
 
+        [Parameter]
         public string MyProperty { get; set; }
 
+        [Parameter]
         public Action<string> MyPropertyChanged { get; set; }
     }
 }
